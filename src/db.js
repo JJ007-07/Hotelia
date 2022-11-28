@@ -6,7 +6,7 @@ const connectiondb = async () => {
         console.log("Conexión satisfactoria", DB.connection.name)
     } catch (error) {
         console.log(error)
-    }
+    }   
 }
 
 module.exports = connectiondb;
