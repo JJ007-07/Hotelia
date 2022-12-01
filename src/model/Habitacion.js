@@ -19,4 +19,8 @@ const HabitacionSchema = new Schema({
     }]
 })
 
+HabitacionSchema.methods.setImg = function set(filename) {
+    this.img = `/public/${filename}`;
+}
+
 module.exports = model("Habitacion", HabitacionSchema);
