@@ -13,11 +13,11 @@ const rutaStorage = multer.diskStorage({
     }
 });
 
-const uplaod = multer({ storage: rutaStorage });
+const upload = multer({ storage: rutaStorage });
 
 rutasHabitacion.get('/', ctrHab.obtener);
 rutasHabitacion.get('/:id', ctrHab.obtenerId);
 rutasHabitacion.post('/', upload.single('img'), ctrHab.add)
-// rutasHabitacion.put('/:id', ctrHab.edit);
+rutasHabitacion.put('/:id', ctrHab.edit);
 
 module.exports = rutasHabitacion;

@@ -23,8 +23,11 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use('/public', express.static('public/upload'));
 
-app.use('/habitaciones', rutasHab);
-app.use('/user', rutasUser);
-app.use('/reserva', rutasReserva);
+app.use(require('./routes/habitacion.routes'));
+// app.get('/', (req,res) => {
+//     res.send('Hola mujndo')
+// });
+// app.use('/user', rutasUser);
+// app.use('/reserva', rutasReserva);
 
 module.exports = app;

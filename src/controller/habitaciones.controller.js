@@ -32,12 +32,36 @@ exports.obtenerId = async (req, res) => {
 
 exports.add = async (req, res) => {
     try {
-        const newHabitacion = new Habitacion(res.body, req.file);
+        const newHabitacion = new Habitacion(req.body, req.file);
         if (req.file) {
             const { filename } = req.file;
             newHabitacion.setImg(filename);
         }
+        await newHabitacion.save();
+        res.status(200).json(newHabitacion);
     } catch (error) {
-
+        console.log(error);
+        res.status(500).json(error);
     }
+}
+
+exports.edit = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const newHabitacion = new Habitacion(req.body, req.file);
+        console.log(req.file);
+        if (req.file) {
+            const { filename } = req.file;
+            newHabitacion.setImg(filename);
+            console.log("Si hay imagen")
+
+        } else {
+            console.log("No hay imagen")
+        }
+        const cambioHabitacion = await Habitacion.findByIdAndUpdate(id, newHabitacion);
+        res.json({ msj: "Habitacion actualizada correctamente" })
+    } catch (error) {
+        res.status(500).json(error);
+    }
+
 }
